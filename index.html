@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visiting the Urban Resilience Hub with Respect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark:      #2D4A3E;
+            --green-mid:       #4A7A66;
+            --green-light:     #C8D9C0;
+            --blue-pastel:     #C4D5E8;
+            --blue-dark:       #1A3D5A;
+            --peach-pastel:    #E8D5C0;
+            --peach-dark:      #5C3210;
+            --lavender-pastel: #D8C8E2;
+            --lavender-dark:   #3A1C58;
+            --coral-pastel:    #F2D9D3;
+            --coral-dark:      #7A2820;
+            --warm-white:      #FDFCF9;
+            --warm-bg:         #ECEAE5;
+            --text-dark:       #1E2820;
+            --text-mid:        #3D4A42;
+            --text-light:      #6B7A72;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 17px;
+            background: var(--warm-bg);
+            color: var(--text-dark);
+            line-height: 1.65;
+        }
+
+        /* ── Global link style ────────────────────────── */
+        a {
+            color: var(--green-mid);
+            text-decoration: underline;
+            text-decoration-color: rgba(74, 122, 102, 0.35);
+            text-underline-offset: 3px;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+        a:hover {
+            color: var(--green-dark);
+            text-decoration-color: var(--green-dark);
+        }
+
+        /* links on dark bg (excludes .btn elements) */
+        .on-dark a:not(.btn) {
+            color: #A8C8A0;
+            text-decoration-color: rgba(168, 200, 160, 0.4);
+        }
+        .on-dark a:not(.btn):hover {
+            color: #C8E0C0;
+            text-decoration-color: #C8E0C0;
+        }
+
+        /* links on colored cards */
+        .on-coral a  { color: var(--coral-dark); text-decoration-color: rgba(122, 40, 32, 0.35); }
+        .on-coral a:hover { color: #5A1810; }
+        .on-blue a   { color: var(--blue-dark); text-decoration-color: rgba(26, 61, 90, 0.35); }
+        .on-blue a:hover  { color: #0E2840; }
+        .on-peach a  { color: var(--peach-dark); text-decoration-color: rgba(92, 50, 16, 0.35); }
+        .on-peach a:hover { color: #3C1E08; }
+
+        /* ── Nav ──────────────────────────────────────── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--green-dark);
+            padding: 0 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 62px;
+            box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+        }
+
+        .nav-brand {
+            font-size: 14px;
+            font-weight: 600;
+            color: #A8C8A0;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13.5px;
+            font-weight: 400;
+            color: #C0D8B8;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: white;
+            border-bottom-color: #A8C8A0;
+            text-decoration: none;
+        }
+
+        /* ── Hero ─────────────────────────────────────── */
+        #home {
+            background: var(--green-dark);
+            padding: 100px 80px 90px;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #A8C8A0;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.2s;
+        }
+
+        #home h1 {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.15;
+            color: #F5F0EA;
+            margin-bottom: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.4s;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            font-weight: 300;
+            color: #C0D8B8;
+            font-style: italic;
+            max-width: 540px;
+            margin: 0 auto 44px;
+            line-height: 1.8;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.6s;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeUp 0.8s ease forwards 0.8s;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 32px;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #A8C8A0;
+            color: #1B3327;
+        }
+        .btn-primary:hover {
+            background: #BDD8B5;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+            text-decoration: none;
+            color: #1B3327;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #C0D8B8;
+            border: 1.5px solid #4A7A66;
+        }
+        .btn-outline:hover {
+            border-color: #A8C8A0;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* ── Section base ─────────────────────────────── */
+        section:not(#home) {
+            padding: 90px 80px;
+        }
+
+        .section-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: var(--green-mid);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .section-lead {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--text-mid);
+            max-width: 620px;
+            line-height: 1.9;
+            margin-bottom: 52px;
+        }
+
+        /* ── About ────────────────────────────────────── */
+        #about { background: var(--warm-white); }
+
+        .about-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .about-card {
+            background: var(--warm-bg);
+            border-radius: 18px;
+            padding: 34px 30px;
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+        }
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 36px rgba(0,0,0,0.09);
+        }
+
+        .about-card-icon { font-size: 34px; margin-bottom: 14px; }
+
+        .about-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 10px;
+        }
+
+        .about-card p {
+            font-size: 15px;
+            color: var(--text-mid);
+            line-height: 1.8;
+        }
+
+        .coverage-links {
+            margin-top: 40px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .coverage-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--green-dark);
+            text-decoration: none;
+            background: var(--green-light);
+            padding: 9px 18px;
+            border-radius: 50px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .coverage-link:hover {
+            background: #A8C8A0;
+            transform: translateY(-1px);
+            color: #1B3327;
+            text-decoration: none;
+        }
+
+        /* ── Two Approaches ───────────────────────────── */
+        #approaches { background: var(--warm-bg); }
+
+        .approach-toggle {
+            display: flex;
+            background: #E0DDD8;
+            border-radius: 50px;
+            padding: 4px;
+            gap: 4px;
+            width: fit-content;
+            margin-bottom: 36px;
+        }
+
+        .approach-btn {
+            padding: 11px 28px;
+            border-radius: 46px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        .approach-btn.colonial.active {
+            background: var(--coral-pastel);
+            color: var(--coral-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .approach-btn.respectful.active {
+            background: var(--blue-pastel);
+            color: var(--blue-dark);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .approach-panel { display: none; animation: fadeIn 0.35s ease; }
+        .approach-panel.active { display: block; }
+
+        .approach-items {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .approach-item {
+            border-radius: 14px;
+            padding: 22px 26px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+        .approach-item.colonial  { background: var(--coral-pastel); }
+        .approach-item.respectful { background: var(--blue-pastel); }
+
+        .approach-item-icon {
+            font-size: 16px;
+            flex-shrink: 0;
+            font-weight: 700;
+            margin-top: 3px;
+        }
+        .approach-item.colonial  .approach-item-icon { color: var(--coral-dark); }
+        .approach-item.respectful .approach-item-icon { color: var(--blue-dark); }
+
+        .approach-item p { font-size: 15.5px; line-height: 1.65; }
+        .approach-item.colonial  p { color: var(--coral-dark); }
+        .approach-item.respectful p { color: var(--blue-dark); }
+
+        .approach-note {
+            margin-top: 28px;
+            font-size: 14.5px;
+            color: var(--text-light);
+        }
+
+        /* ── Guidelines / Timeline ────────────────────── */
+        #guidelines { background: var(--warm-white); }
+
+        .timeline {
+            max-width: 660px;
+            position: relative;
+            padding-left: 44px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 13px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #D8D4CE;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 44px;
+        }
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -44px;
+            top: 3px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 1;
+        }
+        .timeline-dot.done        { background: var(--green-light); color: var(--green-dark); }
+        .timeline-dot.in-progress {
+            background: var(--peach-pastel);
+            color: var(--peach-dark);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .timeline-dot.upcoming    { background: #E0DDD8; color: #AAA; }
+
+        .timeline-item h3 {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+        .timeline-item.done        h3 { color: var(--green-dark); }
+        .timeline-item.in-progress h3 { color: var(--peach-dark); }
+        .timeline-item.upcoming    h3 { color: #AAA; }
+
+        .timeline-item p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.75;
+        }
+        .timeline-item.upcoming p { color: #C0BDB8; }
+
+        .status-note {
+            margin-top: 48px;
+            background: var(--peach-pastel);
+            border-radius: 16px;
+            padding: 28px 34px;
+            max-width: 660px;
+            border-left: 4px solid #D4A880;
+        }
+        .status-note p {
+            font-size: 16px;
+            color: var(--peach-dark);
+            line-height: 1.85;
+            font-style: italic;
+        }
+
+        /* ── Prepare / Checklist ──────────────────────── */
+        #prepare { background: var(--warm-bg); }
+
+        .checklist-wrapper { max-width: 660px; }
+
+        .progress-bar-container {
+            background: #E0DDD8;
+            border-radius: 50px;
+            height: 9px;
+            margin-bottom: 9px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(to right, #A8C8A0, #6BAA80);
+            border-radius: 50px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .progress-label {
+            font-size: 13.5px;
+            color: var(--text-light);
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 20px 0;
+            border-bottom: 1px solid #E4E0D8;
+            cursor: pointer;
+            user-select: none;
+        }
+        .checklist-item:last-of-type { border-bottom: none; }
+
+        .custom-check {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            border: 2px solid #C0BCB6;
+            flex-shrink: 0;
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.22s ease;
+            background: white;
+        }
+        .checklist-item.checked .custom-check {
+            background: #6BAA80;
+            border-color: #6BAA80;
+        }
+        .checklist-item.checked .custom-check::after {
+            content: '✓';
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .checklist-item label {
+            font-size: 16px;
+            color: var(--text-mid);
+            line-height: 1.65;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .checklist-item.checked label {
+            color: #B0ACA8;
+            text-decoration: line-through;
+            text-decoration-color: #C8C4C0;
+        }
+        .checklist-item label a {
+            font-size: inherit;
+        }
+        .checklist-item.checked label a {
+            pointer-events: none;
+        }
+
+        .checklist-complete {
+            display: none;
+            margin-top: 28px;
+            background: var(--green-light);
+            border-radius: 14px;
+            padding: 22px 28px;
+            color: var(--green-dark);
+            font-size: 15.5px;
+            line-height: 1.75;
+            font-weight: 500;
+        }
+        .checklist-complete.visible { display: block; animation: fadeIn 0.4s ease; }
+
+        /* ── Questions / Accordion ────────────────────── */
+        #questions { background: var(--warm-white); }
+
+        .accordion { max-width: 740px; }
+
+        .accordion-item { border-bottom: 1px solid #E4E0D8; }
+        .accordion-item:first-child { border-top: 1px solid #E4E0D8; }
+
+        .accordion-header {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            cursor: pointer;
+            font-family: 'Poppins', sans-serif;
+            text-align: left;
+        }
+        .accordion-header span {
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .accordion-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--warm-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 22px;
+            line-height: 1;
+            color: var(--green-mid);
+            transition: transform 0.3s ease, background 0.2s;
+        }
+        .accordion-item.open .accordion-icon {
+            transform: rotate(45deg);
+            background: var(--green-light);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .accordion-body-inner { padding: 0 0 24px; }
+        .accordion-body-inner p {
+            font-size: 16px;
+            color: var(--text-mid);
+            line-height: 1.9;
+        }
+
+        /* ── Resources box ────────────────────────────── */
+        .resources-box {
+            margin-top: 56px;
+            background: var(--lavender-pastel);
+            border-radius: 18px;
+            padding: 34px 38px;
+            max-width: 960px;
+        }
+
+        .resources-box h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--lavender-dark);
+            margin-bottom: 18px;
+        }
+
+        /* Blog box variant */
+        .blog-box {
+            background: var(--peach-pastel);
+            margin-top: 24px;
+        }
+        .blog-box h3 { color: var(--peach-dark); }
+        .blog-box .resource-list li::before { color: #B05010; }
+        .blog-box .resource-list a { color: var(--peach-dark); text-decoration-color: rgba(92,50,16,0.35); }
+        .blog-box .resource-list a:hover { color: #3C1E08; }
+        .blog-box .resource-list .desc { color: var(--peach-dark); }
+        .blog-box a { color: var(--peach-dark); text-decoration-color: rgba(92,50,16,0.35); }
+        .blog-box a:hover { color: #3C1E08; }
+        .blog-intro {
+            font-size: 15px;
+            color: var(--peach-dark);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .resource-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 16px max-content 1fr;
+            column-gap: 14px;
+            row-gap: 12px;
+            align-items: baseline;
+        }
+
+        .resource-list li {
+            display: contents;
+        }
+
+        .resource-list li::before {
+            content: '→';
+            font-weight: 600;
+            color: #7A5AA8;
+        }
+
+        .resource-list a {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--lavender-dark);
+            text-decoration-color: rgba(58, 28, 88, 0.35);
+        }
+        .resource-list a:hover {
+            color: #280E4A;
+        }
+
+        .resource-list .desc {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--lavender-dark);
+        }
+
+        /* ── Footer ───────────────────────────────────── */
+        footer {
+            background: var(--green-dark);
+            color: #A8C8A0;
+            padding: 48px 80px;
+            text-align: center;
+        }
+        footer p { font-size: 14px; line-height: 1.9; }
+        footer strong { color: #C8E0C0; }
+        .footer-sub {
+            margin-top: 8px;
+            font-size: 13px;
+            opacity: 0.65;
+        }
+        footer a {
+            color: #A8C8A0;
+            text-decoration-color: rgba(168, 200, 160, 0.4);
+        }
+        footer a:hover {
+            color: #C8E0C0;
+            text-decoration-color: #C8E0C0;
+        }
+
+        /* ── Animations ───────────────────────────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(22px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 4px rgba(232, 213, 192, 0.4); }
+            50%       { box-shadow: 0 0 0 9px rgba(232, 213, 192, 0.15); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(26px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .reveal-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal-children.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.0s; }
+        .reveal-children.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
+        .reveal-children.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.24s; }
+    </style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────── -->
+<nav>
+    <div class="nav-brand">Urban Resilience Hub</div>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#approaches">Two Approaches</a></li>
+        <li><a href="#guidelines">Guidelines</a></li>
+        <li><a href="#prepare">Prepare</a></li>
+        <li><a href="#questions">Questions</a></li>
+    </ul>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────── -->
+<section id="home" class="on-dark">
+    <p class="hero-eyebrow">
+        <a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer">Great Plains Action Society</a> · Iowa City
+    </p>
+    <h1>Visiting the Urban Resilience Hub with Respect</h1>
+    <p class="hero-sub">Sacred ground, meaningful relationship, and how to approach a visit in a way that honors the people and work here</p>
+    <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">Learn More</a>
+        <a href="#prepare" class="btn btn-outline">Check My Readiness</a>
+    </div>
+</section>
+
+<!-- ── About ────────────────────────────────────────── -->
+<section id="about">
+    <p class="section-eyebrow reveal">The Hub</p>
+    <h2 class="section-title reveal">This Is Sacred Ground,<br>Not a Museum</h2>
+    <p class="section-lead reveal">The <a href="https://dailyiowan.com/2026/04/14/great-plains-action-society-announces-healing-community-focused-resilience-hub/" target="_blank" rel="noopener noreferrer">Urban Resilience Hub</a> in Iowa City is the physical home of work led by the <a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer">Great Plains Action Society</a> — rooted in Indigenous knowledge, community care, and decolonial practice. Understanding what this place is — and is not — is the first step toward engaging with it well.</p>
+
+    <div class="about-cards reveal-children">
+        <div class="about-card">
+            <div class="about-card-icon">🌿</div>
+            <h3>A Living Place</h3>
+            <p>The Hub is where Indigenous-led work happens in real time. It is not a historical exhibit or a community center open to casual drop-in visits. Life, labor, and purpose unfold here on the community's terms.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-card-icon">🤝</div>
+            <h3>Rooted in Relationship</h3>
+            <p>Access to the Hub follows relationship. Those who have worked here did so over time — showing up with their labor, building trust, and earning a place within an ongoing community of effort.</p>
+        </div>
+        <div class="about-card">
+            <div class="about-card-icon">⚠️</div>
+            <h3>A Pattern to Unlearn</h3>
+            <p>The assumption that a space is available to observe or learn from on one's own schedule is itself a settler-colonial pattern. Unlearning that reflex is part of what respectful engagement requires.</p>
+        </div>
+    </div>
+
+    <div class="coverage-links reveal">
+        <a class="coverage-link" href="https://dailyiowan.com/2026/04/14/great-plains-action-society-announces-healing-community-focused-resilience-hub/" target="_blank" rel="noopener noreferrer">
+            📰 Daily Iowan: Hub Announcement
+        </a>
+        <a class="coverage-link" href="https://cbs2iowa.com/news/local/great-plains-action-society-dedicates-resilience-hub-mutual-aid-garden-with-performers" target="_blank" rel="noopener noreferrer">
+            📺 CBS2: Hub Dedication
+        </a>
+        <a class="coverage-link" href="https://www.thegazette.com/local-government/indigenous-led-great-plains-action-society-plans-community-hub-in-iowa-city/" target="_blank" rel="noopener noreferrer">
+            📰 The Gazette: Hub Plans
+        </a>
+    </div>
+</section>
+
+<!-- ── Two Approaches ───────────────────────────────── -->
+<section id="approaches">
+    <p class="section-eyebrow reveal">Approaches</p>
+    <h2 class="section-title reveal">Two Ways to Show Up</h2>
+    <p class="section-lead reveal">Not all good intentions lead to respectful action. Seeing the contrast between a colonial pattern of access and a respectful alternative helps clarify what that difference looks like in practice.</p>
+
+    <div class="reveal">
+        <div class="approach-toggle">
+            <button class="approach-btn colonial active" onclick="switchApproach('colonial')">Colonial Pattern</button>
+            <button class="approach-btn respectful" onclick="switchApproach('respectful')">Respectful Approach</button>
+        </div>
+
+        <div id="panel-colonial" class="approach-panel active">
+            <div class="approach-items">
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Dropping in unannounced because the address is known</p>
+                </div>
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Expecting Hub stewards to stop their work and provide a tour</p>
+                </div>
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Treating the visit as a field trip or learning experience for yourself</p>
+                </div>
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Moving at your own pace and timeline rather than the community's</p>
+                </div>
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Placing the burden of your education on Indigenous hosts</p>
+                </div>
+                <div class="approach-item colonial on-coral">
+                    <div class="approach-item-icon">✕</div>
+                    <p>Assuming good intentions are sufficient preparation</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="panel-respectful" class="approach-panel">
+            <div class="approach-items">
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Coming with an invitation, arranged through proper channels</p>
+                </div>
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Arriving ready to work and contribute, not just to observe</p>
+                </div>
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Following the leadership and direction of Hub stewards throughout</p>
+                </div>
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Letting relationship set the pace — not your calendar or curiosity</p>
+                </div>
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Bringing humility and a willingness to learn slowly over time</p>
+                </div>
+                <div class="approach-item respectful on-blue">
+                    <div class="approach-item-icon">✓</div>
+                    <p>Doing the work of preparation before you arrive</p>
+                </div>
+            </div>
+        </div>
+
+        <p class="approach-note">
+            New to the concept of settler colonialism? <a href="https://www.splcenter.org/resources/stories/what-is-settlercolonialism/" target="_blank" rel="noopener noreferrer">This introduction from the Southern Poverty Law Center</a> is a clear starting point. The <a href="https://daily.jstor.org/a-primer-on-settler-colonialism/" target="_blank" rel="noopener noreferrer">JSTOR Daily primer</a> goes deeper.
+        </p>
+    </div>
+</section>
+
+<!-- ── Guidelines / Timeline ────────────────────────── -->
+<section id="guidelines">
+    <p class="section-eyebrow reveal">Status</p>
+    <h2 class="section-title reveal">Visiting Guidelines<br>Are on the Way</h2>
+    <p class="section-lead reveal">Formal guidelines for non-Native visitors are being developed in collaboration with Hub stewards and the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Here is where things currently stand.</p>
+
+    <div class="timeline reveal">
+        <div class="timeline-item done">
+            <div class="timeline-dot done">✓</div>
+            <h3>Work Sessions Established</h3>
+            <p>Community members joined organized work weeks at the Hub, building relationship through shared labor and time — not through observation.</p>
+        </div>
+        <div class="timeline-item done">
+            <div class="timeline-dot done">✓</div>
+            <h3>Interest from the Meeting</h3>
+            <p>Members of the Quaker meeting have expressed genuine interest in visiting the Hub, following accounts from those who worked there.</p>
+        </div>
+        <div class="timeline-item in-progress">
+            <div class="timeline-dot in-progress">↻</div>
+            <h3>Guidelines in Development</h3>
+            <p>Visiting guidelines for non-Native guests are being created in partnership between Hub stewards and the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. This work is underway now.</p>
+        </div>
+        <div class="timeline-item upcoming">
+            <div class="timeline-dot upcoming">○</div>
+            <h3>Visits Begin</h3>
+            <p>Once guidelines are complete and shared, community members will be invited to visit in a way that is meaningful and genuinely welcome.</p>
+        </div>
+    </div>
+
+    <div class="status-note on-peach reveal">
+        <p>"Your interest in the Hub is a good thing — and it also means we need to do this right. The wait is not a rejection. It is the beginning of a respectful relationship."</p>
+    </div>
+</section>
+
+<!-- ── Preparation Checklist ─────────────────────────── -->
+<section id="prepare">
+    <p class="section-eyebrow reveal">Preparation</p>
+    <h2 class="section-title reveal">How to Prepare<br>While You Wait</h2>
+    <p class="section-lead reveal">The time before a formal visit is not empty time. Use it to build the foundation that will make your eventual presence at the Hub meaningful.</p>
+
+    <div class="checklist-wrapper reveal">
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <p class="progress-label" id="progress-label">0 of 6 steps completed</p>
+
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Learn about the <a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Great Plains Action Society</a> and the work <a href="https://www.greatplainsaction.org/sikowis" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Sikowis Nobiss</a> leads</label>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Learn about the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">Decolonial Repair Network</a> and its role in supporting the Hub</label>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Reflect on your own relationship to settler colonialism — <a href="https://www.splcenter.org/resources/stories/what-is-settlercolonialism/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">start here if this is new to you</a></label>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Speak with those who have worked at the Hub — ask what the experience taught them, or <a href="https://activeobjection.substack.com/p/engaging-with-the-urban-resilience" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">read this photo account of the work weeks</a></label>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Set aside any expectation of being taught or given a tour upon arrival</label>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+            <div class="custom-check"></div>
+            <label>Consider what you can offer — your time, labor, or presence — not only what you hope to receive</label>
+        </div>
+
+        <div class="checklist-complete" id="checklist-complete">
+            You have worked through all six steps. That preparation matters. When visiting guidelines are available, you will be ready to show up in a way that honors this space and the people in it.
+        </div>
+    </div>
+</section>
+
+<!-- ── Questions / Accordion ────────────────────────── -->
+<section id="questions">
+    <p class="section-eyebrow reveal">Questions</p>
+    <h2 class="section-title reveal">Common Questions</h2>
+    <p class="section-lead reveal">Some questions that come up when people first learn about the Hub and its visiting process.</p>
+
+    <div class="accordion reveal">
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+                <span>Can I just stop by to see what the Hub looks like?</span>
+                <div class="accordion-icon">+</div>
+            </button>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p>No. Dropping by unannounced — even with good intentions — replicates a colonial pattern of access that the Hub's work is actively undoing. The space deserves intentional engagement, not casual curiosity. The Hub is not a park or a landmark to pass by.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+                <span>Who decides when visits can happen and how they are structured?</span>
+                <div class="accordion-icon">+</div>
+            </button>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p>The Hub's stewards do — in collaboration with the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Guidelines are being co-created to ensure that visits are meaningful and genuinely welcome, not merely permitted or tolerated.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+                <span>What is the Decolonial Repair Network?</span>
+                <div class="accordion-icon">+</div>
+            </button>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p>The <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a> (DRN) was created by <a href="https://www.greatplainsaction.org/sikowis" target="_blank" rel="noopener noreferrer">Sikowis Nobiss</a> and <a href="https://embracingrepair.substack.com/p/healing-lands-healing-colonialism" target="_blank" rel="noopener noreferrer">Eric Anglada</a> to support the Great Plains Action Society's work and vision. The DRN works to build relationships between Indigenous and non-Indigenous communities in ways that honor Indigenous leadership rather than extract from it.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+                <span>Why did some meeting members get to go while others did not?</span>
+                <div class="accordion-icon">+</div>
+            </button>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p>Those who went did so by showing up to organized work weeks — not to visit, but to work. That distinction matters. The invitation to participate in those work sessions was shared with the whole meeting. Relationship developed through showing up to contribute, not through a scheduled tour or a supervised walk-through.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this.parentElement)">
+                <span>What can I do right now while I wait?</span>
+                <div class="accordion-icon">+</div>
+            </button>
+            <div class="accordion-body">
+                <div class="accordion-body-inner">
+                    <p>Use the preparation checklist on this page. Read about the <a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer">Great Plains Action Society</a> and the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Reflect on your own relationship to settler colonialism. Speak with those who have worked at the Hub. When visiting guidelines are ready, you will be in a much better position to show up with care and meaning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resources box -->
+    <div class="resources-box reveal">
+        <h3>Further Reading &amp; Listening</h3>
+        <ul class="resource-list">
+            <li>
+                <a href="https://www.greatplainsaction.org/about" target="_blank" rel="noopener noreferrer">About the Great Plains Action Society</a>
+                <span class="desc">— the organization's mission, history, and current work</span>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=t2V3prIoTrQ" target="_blank" rel="noopener noreferrer">On Decolonizing, Re-Indigenizing &amp; Rematriation with Sikowis Nobiss</a>
+                <span class="desc">— a 45-minute interview (YouTube)</span>
+            </li>
+            <li>
+                <a href="https://ictnews.org/news/native-allies-seek-to-heal-primary-injustice-on-this-continent/" target="_blank" rel="noopener noreferrer">Native allies seek to heal 'primary injustice on this continent'</a>
+                <span class="desc">— Indian Country Today on the DRN's work</span>
+            </li>
+            <li>
+                <a href="https://embracingrepair.substack.com/p/healing-lands-healing-colonialism" target="_blank" rel="noopener noreferrer">Healing Lands, Healing Colonialism</a>
+                <span class="desc">— Eric Anglada on the spiritual dimensions of decolonial repair</span>
+            </li>
+            <li>
+                <a href="https://decolonialrepairnetwork.blog/resources/" target="_blank" rel="noopener noreferrer">DRN Resources page</a>
+                <span class="desc">— curated reading list maintained by the Decolonial Repair Network</span>
+            </li>
+            <li>
+                <a href="https://daily.jstor.org/a-primer-on-settler-colonialism/" target="_blank" rel="noopener noreferrer">A Primer on Settler Colonialism</a>
+                <span class="desc">— JSTOR Daily, a solid academic introduction</span>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Jeff's Blog box -->
+    <div class="resources-box blog-box reveal">
+        <h3>From Jeff's Blog — <em>Active Objection</em></h3>
+        <p class="blog-intro">Jeff Kisling has written about this work firsthand at <a href="https://activeobjection.substack.com/" target="_blank" rel="noopener noreferrer">activeobjection.substack.com</a>. These posts come directly from his experience at the Hub and his decade of relationship with <a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer">Great Plains Action Society</a>.</p>
+        <ul class="resource-list">
+            <li>
+                <a href="https://activeobjection.substack.com/p/engaging-with-the-urban-resilience" target="_blank" rel="noopener noreferrer">Engaging with the Urban Resilience Hub</a>
+                <span class="desc">— a photo storybook of the actual work done during the Hub work weeks</span>
+            </li>
+            <li>
+                <a href="https://activeobjection.substack.com/p/in-a-good-way" target="_blank" rel="noopener noreferrer">In a Good Way</a>
+                <span class="desc">— Jeff's personal journey since hearing Sikowis Nobiss speak in 2017, and the difficulty of translating lived experience to a Quaker meeting</span>
+            </li>
+            <li>
+                <a href="https://activeobjection.substack.com/p/urgent-need-to-support-indigenous" target="_blank" rel="noopener noreferrer">Urgent Need to Support Indigenous Work Now</a>
+                <span class="desc">— three concrete ways to support GPAS, including donating through the Honor Native Land Fund and joining the DRN</span>
+            </li>
+            <li>
+                <a href="https://activeobjection.substack.com/p/expanded-role-for-the-decolonial" target="_blank" rel="noopener noreferrer">Expanded Role for the Decolonial Repair Network</a>
+                <span class="desc">— on the concept of accompaniment, and how it applies to engaging with Indigenous spaces without burdening their stewards</span>
+            </li>
+            <li>
+                <a href="https://activeobjection.substack.com/p/which-future" target="_blank" rel="noopener noreferrer">Which Future?</a>
+                <span class="desc">— settler futurity versus Indigenous futurity, and why this distinction matters for anyone wanting to engage with this work</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ── Footer ────────────────────────────────────────── -->
+<footer>
+    <p>
+        <strong><a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a></strong>
+        &nbsp;·&nbsp;
+        <strong><a href="https://www.greatplainsaction.org/" target="_blank" rel="noopener noreferrer">Great Plains Action Society</a></strong>
+        &nbsp;·&nbsp;
+        Urban Resilience Hub, Iowa City
+    </p>
+    <p class="footer-sub">
+        Developed in collaboration with Hub stewards and the Decolonial Repair Network
+    </p>
+</footer>
+
+<script>
+    // ── Approach Toggle ───────────────────────────────
+    function switchApproach(type) {
+        document.querySelectorAll('.approach-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.approach-panel').forEach(panel => panel.classList.remove('active'));
+        document.querySelector('.approach-btn.' + type).classList.add('active');
+        document.getElementById('panel-' + type).classList.add('active');
+    }
+
+    // ── Checklist ─────────────────────────────────────
+    function toggleCheck(item) {
+        item.classList.toggle('checked');
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const items   = document.querySelectorAll('.checklist-item');
+        const checked = document.querySelectorAll('.checklist-item.checked').length;
+        const total   = items.length;
+        const pct     = Math.round((checked / total) * 100);
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-label').textContent =
+            checked + ' of ' + total + ' steps completed';
+        const done = document.getElementById('checklist-complete');
+        if (checked === total) {
+            done.classList.add('visible');
+        } else {
+            done.classList.remove('visible');
+        }
+    }
+
+    // ── Accordion ─────────────────────────────────────
+    function toggleAccordion(item) {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.accordion-item').forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.accordion-body').style.maxHeight = null;
+        });
+        if (!isOpen) {
+            item.classList.add('open');
+            const body = item.querySelector('.accordion-body');
+            body.style.maxHeight = body.scrollHeight + 'px';
+        }
+    }
+
+    // ── Scroll Reveal ─────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal, .reveal-children').forEach(el => {
+        revealObserver.observe(el);
+    });
+
+    // ── Active Nav ────────────────────────────────────
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const id = entry.target.getAttribute('id');
+                const match = document.querySelector('.nav-links a[href="#' + id + '"]');
+                if (match) match.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+
+    sections.forEach(s => navObserver.observe(s));
+</script>
+
+</body>
+</html>
