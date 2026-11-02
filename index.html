@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visiting the Urban Resilience Hub with Respect</title>
+    <title>DRAFT · Visiting the Urban Resilience Hub with Respect</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -721,9 +721,45 @@
         .reveal-children.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.0s; }
         .reveal-children.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
         .reveal-children.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.24s; }
-    </style>
+    
+        /* ── Draft marking ── */
+        .draft-banner {
+            background: var(--peach-pastel);
+            color: var(--peach-dark);
+            border-bottom: 2px solid var(--peach-dark);
+            padding: 12px 24px;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .draft-banner strong { letter-spacing: 0.08em; }
+        .draft-watermark {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 90;
+            overflow: hidden;
+        }
+        .draft-watermark span {
+            font-size: clamp(5rem, 18vw, 14rem);
+            font-weight: 800;
+            letter-spacing: 0.15em;
+            color: var(--peach-dark);
+            opacity: 0.06;
+            transform: rotate(-28deg);
+            white-space: nowrap;
+            user-select: none;
+        }
+        @media print { .draft-watermark span { opacity: 0.1; } }
+</style>
 </head>
 <body>
+
+<div class="draft-watermark" aria-hidden="true"><span>DRAFT</span></div>
+<div class="draft-banner" role="note"><strong>DRAFT</strong> · This guide is a working draft. It has not been reviewed or accepted by the Great Plains Action Society or the Hub's stewards, and it is not an official GPAS document. It is shared for discussion with the Decolonial Repair Network planning committee.</div>
 
 <!-- ── Navigation ──────────────────────────────────── -->
 <nav>
@@ -866,8 +902,8 @@
 <!-- ── Guidelines / Timeline ────────────────────────── -->
 <section id="guidelines">
     <p class="section-eyebrow reveal">Status</p>
-    <h2 class="section-title reveal">Visiting Guidelines<br>Are on the Way</h2>
-    <p class="section-lead reveal">Formal guidelines for non-Native visitors are being developed in collaboration with Hub stewards and the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Here is where things currently stand.</p>
+    <h2 class="section-title reveal">Visiting Guidelines<br>Are a Draft</h2>
+    <p class="section-lead reveal">The idea of guidelines for non-Native visitors was raised with the Hub's stewards first, and a draft was begun only after they welcomed it. That draft is now with the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a> planning committee for comment. Whether it becomes the accepted version is the Hub's decision. Here is where things currently stand.</p>
 
     <div class="timeline reveal">
         <div class="timeline-item done">
@@ -882,13 +918,13 @@
         </div>
         <div class="timeline-item in-progress">
             <div class="timeline-dot in-progress">↻</div>
-            <h3>Guidelines in Development</h3>
-            <p>Visiting guidelines for non-Native guests are being created in partnership between Hub stewards and the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. This work is underway now.</p>
+            <h3>Draft Under Review</h3>
+            <p>A draft of visiting guidelines for non-Native guests has been shared with the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a> planning committee. It has not yet been accepted by the Hub, and it may change or be set aside.</p>
         </div>
         <div class="timeline-item upcoming">
             <div class="timeline-dot upcoming">○</div>
             <h3>Visits Begin</h3>
-            <p>Once guidelines are complete and shared, community members will be invited to visit in a way that is meaningful and genuinely welcome.</p>
+            <p>Only if and when the Hub accepts guidelines and shares them, community members will be invited to visit in a way that is meaningful and genuinely welcome.</p>
         </div>
     </div>
 
@@ -966,7 +1002,7 @@
             </button>
             <div class="accordion-body">
                 <div class="accordion-body-inner">
-                    <p>The Hub's stewards do — in collaboration with the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Guidelines are being co-created to ensure that visits are meaningful and genuinely welcome, not merely permitted or tolerated.</p>
+                    <p>The Hub's stewards do — in collaboration with the <a href="https://decolonialrepairnetwork.blog/" target="_blank" rel="noopener noreferrer">Decolonial Repair Network</a>. Any guidelines are theirs to accept, change or set aside. The current text is a draft only, offered so that visits can be meaningful and genuinely welcome, not merely permitted or tolerated.</p>
                 </div>
             </div>
         </div>
@@ -1078,7 +1114,7 @@
         Urban Resilience Hub, Iowa City
     </p>
     <p class="footer-sub">
-        Developed in collaboration with Hub stewards and the Decolonial Repair Network
+        DRAFT · Prepared by Jeff Kisling at the invitation of the Hub's stewards; under review by the Decolonial Repair Network planning committee. Not an official Great Plains Action Society document.
     </p>
 </footer>
 
