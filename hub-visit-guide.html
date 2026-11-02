@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visiting the Urban Resilience Hub with Respect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ECEAE5;
+            display: flex;
+            justify-content: center;
+            padding: 48px 20px;
+        }
+
+        .infographic {
+            width: 820px;
+            background: #FDFCF9;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 6px 40px rgba(0, 0, 0, 0.09);
+        }
+
+        /* ── Header ─────────────────────────────────── */
+        .header {
+            background: #2D4A3E;
+            color: white;
+            padding: 56px 70px 48px;
+            text-align: center;
+        }
+
+        .header .eyebrow {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            color: #A8C8A0;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 18px;
+            color: #F5F0EA;
+        }
+
+        .header .subtitle {
+            font-size: 14.5px;
+            font-weight: 300;
+            color: #C0D8B8;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.75;
+            font-style: italic;
+        }
+
+        /* ── Body ───────────────────────────────────── */
+        .body {
+            padding: 48px 60px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        /* Sacred ground banner */
+        .sacred {
+            background: #C8D9C0;
+            border-radius: 16px;
+            padding: 30px 32px;
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+        }
+
+        .sacred-icon {
+            font-size: 34px;
+            flex-shrink: 0;
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        .sacred h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1B3327;
+            margin-bottom: 8px;
+        }
+
+        .sacred p {
+            font-size: 13.5px;
+            color: #2C4A3A;
+            line-height: 1.75;
+        }
+
+        /* Two columns */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            border-radius: 16px;
+            padding: 28px 28px 24px;
+        }
+
+        .card.avoid  { background: #F2D9D3; }
+        .card.respect { background: #C4D5E8; }
+
+        .card-icon {
+            font-size: 26px;
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+
+        .card h2 {
+            font-size: 14.5px;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .card.avoid  h2 { color: #7A2820; }
+        .card.respect h2 { color: #1A3D5A; }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card ul li {
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 5px 0 5px 22px;
+            position: relative;
+            color: #333;
+        }
+
+        .card.avoid ul li::before {
+            content: "✕";
+            position: absolute;
+            left: 0;
+            font-size: 11px;
+            color: #C0392B;
+            font-weight: 700;
+            top: 7px;
+        }
+
+        .card.respect ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            font-size: 12px;
+            color: #1A5276;
+            font-weight: 700;
+            top: 6px;
+        }
+
+        /* Status banner */
+        .status {
+            background: #E8D5C0;
+            border-radius: 16px;
+            padding: 30px 36px;
+            text-align: center;
+        }
+
+        .status h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #5C3210;
+            margin-bottom: 10px;
+        }
+
+        .status p {
+            font-size: 13.5px;
+            color: #6B3C14;
+            line-height: 1.75;
+            max-width: 560px;
+            margin: 0 auto 20px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #5C3210;
+            color: #F5E0CC;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 7px 20px;
+            border-radius: 24px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Prepare section */
+        .prepare {
+            background: #D8C8E2;
+            border-radius: 16px;
+            padding: 28px 30px;
+        }
+
+        .prepare h2 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #3A1C58;
+            margin-bottom: 18px;
+        }
+
+        .prepare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .prepare-item {
+            background: rgba(255, 255, 255, 0.45);
+            border-radius: 12px;
+            padding: 16px 18px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .prepare-item .num {
+            font-size: 22px;
+            font-weight: 700;
+            color: #6B3AAA;
+            flex-shrink: 0;
+            line-height: 1.1;
+        }
+
+        .prepare-item p {
+            font-size: 13px;
+            color: #3A2050;
+            line-height: 1.65;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid #E4E0D8;
+            padding: 22px 60px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 11.5px;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .footer strong {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic">
+
+        <!-- Header -->
+        <div class="header">
+            <div class="eyebrow">Great Plains Action Society · Iowa City</div>
+            <h1>Visiting the Urban Resilience Hub<br>with Respect</h1>
+            <p class="subtitle">A guide for non-Native visitors — and why taking time<br>to prepare is itself an act of respect</p>
+        </div>
+
+        <div class="body">
+
+            <!-- Sacred Ground -->
+            <div class="sacred">
+                <div class="sacred-icon">🌿</div>
+                <div>
+                    <h2>This Is Sacred Ground, Not a Museum</h2>
+                    <p>The Urban Resilience Hub is the physical home of work rooted in Indigenous knowledge, community care, and decolonial practice. It is a living place of relationship — not a site to observe from the outside. Arriving without preparation, without invitation, or without intention to contribute replicates the settler-colonial patterns this work is actively undoing.</p>
+                </div>
+            </div>
+
+            <!-- Avoid / Respect -->
+            <div class="two-col">
+
+                <div class="card avoid">
+                    <div class="card-icon">⚠️</div>
+                    <h2>Patterns to Unlearn</h2>
+                    <ul>
+                        <li>Dropping in unannounced</li>
+                        <li>Expecting to be taught without contributing</li>
+                        <li>Treating the visit as sightseeing</li>
+                        <li>Placing the burden of education on Hub stewards</li>
+                        <li>Moving faster than relationship allows</li>
+                    </ul>
+                </div>
+
+                <div class="card respect">
+                    <div class="card-icon">🤝</div>
+                    <h2>Visiting with Respect</h2>
+                    <ul>
+                        <li>Come with invitation and clear intention</li>
+                        <li>Arrive ready to work, not just to observe</li>
+                        <li>Follow the leadership of Hub stewards</li>
+                        <li>Bring humility and willingness to learn slowly</li>
+                        <li>Let relationship come before access</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Status -->
+            <div class="status">
+                <h2>Visiting Guidelines Are on the Way</h2>
+                <p>Guidelines for non-Native visitors are being developed in collaboration between the Hub's stewards and the Decolonial Repair Network. This process honors Indigenous leadership and ensures that visits are meaningful for everyone — not merely convenient.</p>
+                <span class="status-badge">In Development — Your Interest Is Valued</span>
+            </div>
+
+            <!-- Prepare -->
+            <div class="prepare">
+                <h2>How to Prepare While You Wait</h2>
+                <div class="prepare-grid">
+                    <div class="prepare-item">
+                        <div class="num">1</div>
+                        <p>Learn about the Great Plains Action Society and the work Sikowis Nobiss leads</p>
+                    </div>
+                    <div class="prepare-item">
+                        <div class="num">2</div>
+                        <p>Reflect on your own relationship to settler colonialism and what you bring to this space</p>
+                    </div>
+                    <div class="prepare-item">
+                        <div class="num">3</div>
+                        <p>Speak with those who have worked at the Hub — they can share what the experience taught them</p>
+                    </div>
+                    <div class="prepare-item">
+                        <div class="num">4</div>
+                        <p>Trust that the time spent waiting and preparing will make the eventual visit more meaningful</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Decolonial Repair Network</strong> &nbsp;·&nbsp; <strong>Great Plains Action Society</strong> &nbsp;·&nbsp; Urban Resilience Hub, Iowa City</p>
+        </div>
+
+    </div>
+</body>
+</html>
