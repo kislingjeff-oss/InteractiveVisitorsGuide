@@ -733,6 +733,11 @@
             line-height: 1.5;
         }
         .draft-banner strong { letter-spacing: 0.08em; }
+        .sticky-top { position: sticky; top: 0; z-index: 100; }
+        .sticky-top nav { position: relative; top: auto; }
+        @media (max-width: 700px) {
+            .draft-banner { font-size: 0.8rem; padding: 8px 14px; line-height: 1.4; }
+        }
         .draft-watermark {
             position: fixed;
             inset: 0;
@@ -759,6 +764,7 @@
 <body>
 
 <div class="draft-watermark" aria-hidden="true"><span>DRAFT</span></div>
+<div class="sticky-top" id="stickyTop">
 <div class="draft-banner" role="note"><strong>DRAFT</strong> · This guide is a working draft. It has been reviewed by the Great Plains Action Society but has not been officially accepted, and it is not an official GPAS document. It is shared for discussion with the Decolonial Repair Network planning committee.</div>
 
 <!-- ── Navigation ──────────────────────────────────── -->
@@ -772,6 +778,7 @@
         <li><a href="#questions">Questions</a></li>
     </ul>
 </nav>
+</div>
 
 <!-- ── Hero ────────────────────────────────────────── -->
 <section id="home" class="on-dark">
@@ -1195,5 +1202,16 @@
     sections.forEach(s => navObserver.observe(s));
 </script>
 
+<script>
+(function(){
+  function setOffset(){
+    var h=document.getElementById('stickyTop');
+    if(h){document.documentElement.style.scrollPaddingTop=(h.offsetHeight+8)+'px';}
+  }
+  window.addEventListener('load',setOffset);
+  window.addEventListener('resize',setOffset);
+  setOffset();
+})();
+</script>
 </body>
 </html>
